@@ -17,7 +17,7 @@ BaselineOfBeautifulComments >> baseline: spec [
 		spec 
 			package: #'BeautifulComments'  with: [
 				spec requires:  #( #'MicrodownDev') ];
-			package: #'Microdown-Calypso' with: [
+			package: #'BeautifulComments-Calypso' with: [
 				spec requires:  #(#'BeautifulComments')]
 		]
 
