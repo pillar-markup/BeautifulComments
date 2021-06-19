@@ -84,7 +84,7 @@ Here is a list:
 In Pharo, Microdown supports hyperlinks to: 
 - classes e.g., `Point`, 
 - methodes e.g., `Point class`, `Point>>#setX:setY:`, and 
-- packages e.g., `#''Microdown-Tests'' (for packages).
+- packages e.g., `#''Microdown-Tests''` (for packages).
 
 You can edit this file clicking on `ClySyntaxHelpMorph>>#rawMicrodownSyntax`.
 '
