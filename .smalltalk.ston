@@ -1,0 +1,11 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'BeautifulComments',
+      #onConflict : #useIncoming,
+      #ignoreImage : true,
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ]
+}
