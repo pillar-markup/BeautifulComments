@@ -12,7 +12,7 @@ BaselineOfBeautifulComments >> baseline: spec [
 			baseline: 'MicrodownDev'
 			with: [
 				spec
-					"loads: #('Microdown');"
+					loads: #('Core');
 					repository: 'github://Pillar-markup/Microdown/src' ].
 		spec 
 			package: #'Beautiful-Comments'  with: [
