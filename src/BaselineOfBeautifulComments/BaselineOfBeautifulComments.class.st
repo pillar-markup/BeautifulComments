@@ -13,7 +13,7 @@ BaselineOfBeautifulComments >> baseline: spec [
 			with: [
 				spec
 					loads: #('Tests');
-					ignoreImage;
+					ignoreImage: true;
 					repository: 'github://Pillar-markup/Microdown:dev/src' ].
 		spec 
 			package: #'BeautifulComments'  with: [
