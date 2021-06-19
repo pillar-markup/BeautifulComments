@@ -13,8 +13,6 @@ BaselineOfBeautifulComments >> baseline: spec [
 			with: [
 				spec
 					loads: #('Tests');
-					onConflict: [ :ex | ex useIncoming ];
-					onUpgrade: [ :ex | ex useIncoming ];
 					repository: 'github://Pillar-markup/Microdown:dev/src' ].
 		spec 
 			package: #'BeautifulComments'  with: [
