@@ -12,13 +12,11 @@ BaselineOfBeautifulComments >> baseline: spec [
 			baseline: 'MicrodownDev'
 			with: [
 				spec
-					loads: #('Tests');
+					loads: #('RichText');
 					repository: 'github://Pillar-markup/Microdown:dev/src' ].
 		spec 
-			package: #'BeautifulComments'  with: [
-				spec requires:  #( #'MicrodownDev') ];
-			package: #'BeautifulComments-Calypso' with: [
-				spec requires:  #(#'BeautifulComments')]
+			package: #'BeautifulComments-Calypso'  with: [
+				spec requires:  #( #'MicrodownDev') ]
 		]
 
 ]
