@@ -9,7 +9,7 @@ BaselineOfBeautifulComments >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
 		spec
-			baseline: 'MicrodownDev'
+			baseline: 'Microdown'
 			with: [
 				spec
 					loads: #('RichText');
