@@ -8,5 +8,8 @@ SmalltalkCISpec {
       #directory : 'src',
       #platforms : [ #pharo ]
     }
-  ]
+  ],
+ #testing : {
+    #failOnZeroTests : false
+ }
 }
