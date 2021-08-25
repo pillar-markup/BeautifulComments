@@ -60,5 +60,5 @@ Class {
 		'OffLine',
 		'Stylers'
 	],
-	#category : #BeautifulComments
+	#category : #'BeautifulComments-Visitor'
 }
