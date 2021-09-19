@@ -92,10 +92,7 @@ You can edit this file clicking on `ClySyntaxHelpMorph>>#rawMicrodownSyntax`.
 
 { #category : #building }
 ClySyntaxHelpMorph >> syntax [ 
-
-	"^ 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'The following is rendered below.' asText, String cr, String cr, self syntaxRaw, String cr, ([MicroDownParser asText: self syntaxRaw ] on: MicParsingError, MessageNotUnderstood  do: [ '' ])"
+	"Return a text to be rendered by a morph, and produced by the MicRichTextComposer"
 	
-	"^ 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'The following is rendered below.' asText, String cr asText, String cr asText, self rawMicrodownSyntax, String cr asText, (MicroDownParser asText: self rawMicrodownSyntax )"
-	
-	^ (([MicroDownParser asText: self rawMicrodownSyntax ] on: MicParsingError, MessageNotUnderstood  do: [ '''' ]) , 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'Here is the corresponding text in Microdown.', String cr, String cr, self rawMicrodownSyntax, String cr) asText
+	^ (MicRichTextComposer render: self rawMicrodownSyntax , String cr, String cr, 'Microdown''s in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr) , ('Here is the corresponding text in Microdown.', String cr, String cr, self rawMicrodownSyntax, String cr) asText
 ]
