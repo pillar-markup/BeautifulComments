@@ -8,9 +8,9 @@ A nice extension of Pharo to support class comments in Microdown and nice render
  
 ```
 Metacello new
-  baseline: 'BeautifulComments';
-  repository: 'github://pillar-markup/BeautifulComments/src';
-  load.
+ 	 baseline: 'BeautifulComments';
+ 	 repository: 'github://pillar-markup/BeautifulComments:master/src';
+ 	 load.
 ```
 
 More to come...
