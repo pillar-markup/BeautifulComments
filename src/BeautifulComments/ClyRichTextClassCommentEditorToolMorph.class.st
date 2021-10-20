@@ -6,6 +6,8 @@ I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` an
 Class {
 	#name : #ClyRichTextClassCommentEditorToolMorph,
 	#superclass : #ClyClassCommentEditorToolMorph,
+	#traits : 'TClyRichTextCommentEditorPaneMorph',
+	#classTraits : 'TClyRichTextCommentEditorPaneMorph classTrait',
 	#instVars : [
 		'isRendering'
 	],
@@ -28,42 +30,12 @@ ClyRichTextClassCommentEditorToolMorph >> asRenderedText: comment [
 	asText turns it into a Text, and asString into a string, which is what we expect. 
 	If we have a real source code, asText asString is dummy and does not fail."
 
-	^ MicRichTextComposer renderComment: comment asText asString of: self editingClass
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> buildTextMorph [
-	super buildTextMorph.
-	self setBackgroundColor: self renderColor.
-	self bindKeyCombination: $r command toAction: [ self toggleMode ].
-	self disable 
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> changesAccepted [
-	| res |
-	res := super changesAccepted.
-	self switchToRenderMode.
-	^res
+	^ MicRichTextComposer renderComment: comment asText asString of: self editingClass 
 ]
 
 { #category : #rendering }
 ClyRichTextClassCommentEditorToolMorph >> disable [
 	textMorph enabled: false
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> editColor [
-	^ self theme backgroundColor 
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> editingText [
-	| text |
-	text := super editingText.
-	^ isRendering 
-		ifTrue: [ self asRenderedText: text ]
-		ifFalse: [ text ]
 ]
 
 { #category : #rendering }
@@ -80,25 +52,11 @@ ClyRichTextClassCommentEditorToolMorph >> fillStatusBar [
 
 ]
 
-{ #category : #rendering }
+{ #category : #initialization }
 ClyRichTextClassCommentEditorToolMorph >> initialize [
 	super initialize.
-	isRendering := true.
+	self initializePaneTrait.
 
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> isRendering [
-	^ isRendering
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> renderColor [
-	| bgColor |
-	bgColor := self theme backgroundColor.
-	^ bgColor lightness < 0.5
-		ifTrue: [ bgColor + (Color r: 0.0 g: 0.04 b:0.08 )]
-		ifFalse: [ bgColor darker ]
 ]
 
 { #category : #initialization }
@@ -106,29 +64,4 @@ ClyRichTextClassCommentEditorToolMorph >> setBackgroundColor: aColor [
 	
 	textMorph color: aColor
 	
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> switchToEditMode [
-	isRendering := false.
-	self enable.
-	self setBackgroundColor: self editColor.
-	self triggerUpdate
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> switchToRenderMode [
-	self hasUnacceptedEdits
-		ifTrue: [ ^ self ].
-	isRendering := true.
-	self setBackgroundColor: self renderColor.
-	self disable.
-	self triggerUpdate
-]
-
-{ #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> toggleMode [
-	isRendering
-		ifTrue: [ self switchToEditMode ]
-		ifFalse: [ self switchToRenderMode ]
 ]
