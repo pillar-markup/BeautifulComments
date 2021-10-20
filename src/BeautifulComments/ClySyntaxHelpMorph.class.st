@@ -1,5 +1,5 @@
 "
-I implement the `Syntax help` button in the lower right of this pane:
+I implement the `Syntax help` button in the lower right of this pane: 
 
 ![image](https://user-images.githubusercontent.com/17723745/138031552-9f8c5653-1b9c-4553-8aa4-0fe0ff75faf8.png).
 
