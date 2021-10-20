@@ -1,5 +1,9 @@
 "
-I'm a simple morph to be added in in a comment editor. I let the user toggle edit / view view of the comment pane.
+I implement the toggle edit/view comment in the lower right corner of the class comment pane.
+I can be activated by the keyboard shortcut defined in `ClyRichTextClassCommentEditorToolMorph>>buildTextMorph` - command-r
+
+![image](https://user-images.githubusercontent.com/17723745/138033718-94ec6db8-f6e3-45fd-93e5-7722261ebc41.png)
+
 "
 Class {
 	#name : #ClyEditCommentSwitchMorph,
