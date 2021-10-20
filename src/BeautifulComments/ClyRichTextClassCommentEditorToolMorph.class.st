@@ -23,13 +23,12 @@ ClyRichTextClassCommentEditorToolMorph class >> classTabActivation [
 ]
 
 { #category : #rendering }
-ClyRichTextClassCommentEditorToolMorph >> asRenderedText [
-	"Assumes we are in view pillar source mode. editingText does not return a Text in case of working with RGComment. asText turns it into a Text, and asString into a string, which is what we expect. 
+ClyRichTextClassCommentEditorToolMorph >> asRenderedText: comment [
+	"Assumes we are in view source mode. commment might be an instance of RGComment. 
+	asText turns it into a Text, and asString into a string, which is what we expect. 
 	If we have a real source code, asText asString is dummy and does not fail."
 
-	self flag: #fixme. "this is strange to have a super here."
-	
-	^ MicRichTextComposer renderComment: super editingText asText asString of: self editingClass
+	^ MicRichTextComposer renderComment: comment asText asString of: self editingClass
 ]
 
 { #category : #rendering }
@@ -60,9 +59,11 @@ ClyRichTextClassCommentEditorToolMorph >> editColor [
 
 { #category : #rendering }
 ClyRichTextClassCommentEditorToolMorph >> editingText [
+	| text |
+	text := super editingText.
 	^ isRendering 
-		ifTrue: [ self asRenderedText ]
-		ifFalse: [ super editingText ]
+		ifTrue: [ self asRenderedText: text ]
+		ifFalse: [ text ]
 ]
 
 { #category : #rendering }

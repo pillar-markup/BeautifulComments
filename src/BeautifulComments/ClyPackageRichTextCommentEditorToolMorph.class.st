@@ -1,8 +1,8 @@
 "
-I am a replacement for the """"package comments"""" tool.
+I am a replacement for the _package comments_ tool.
 
 
-I need to be refactored somehow as ==ClyPackageRichTextCommentEditorToolMorph== and ==ClyRichTextClassCommentEditorToolMorph== are basically identical
+I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` and `ClyRichTextClassCommentEditorToolMorph` are basically identical
 "
 Class {
 	#name : #ClyPackageRichTextCommentEditorToolMorph,
@@ -23,10 +23,13 @@ ClyPackageRichTextCommentEditorToolMorph class >> browserTabActivation2 [
 	"Do nothing - part of a hack for overriding the class package tool in Calypso"
 ]
 
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> asRenderedText [
-	self flag: #fixme. "super bad usage"
-	^ MicRichTextComposer renderComment: super editingText asText asString of: self editingPackage
+{ #category : #converting }
+ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
+	"Assumes we are in view source mode. commment might be an instance of RGComment. 
+	asText turns it into a Text, and asString into a string, which is what we expect. 
+	If we have a real source code, asText asString is dummy and does not fail."
+
+	^ MicRichTextComposer renderComment: comment asText asString of: self editingPackage
 ]
 
 { #category : #rendering }
@@ -57,9 +60,11 @@ ClyPackageRichTextCommentEditorToolMorph >> editColor [
 
 { #category : #initialization }
 ClyPackageRichTextCommentEditorToolMorph >> editingText [
+	| text |
+	text := super editingText.
 	^ isRendering 
-		ifTrue: [ self asRenderedText ]
-		ifFalse: [ super editingText ]
+		ifTrue: [ self asRenderedText: text ]
+		ifFalse: [ text ]
 ]
 
 { #category : #initialization }
