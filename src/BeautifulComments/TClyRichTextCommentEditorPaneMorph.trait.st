@@ -1,3 +1,6 @@
+"
+I am a trait that gathers the common aspects of the package and class comment editors.
+"
 Trait {
 	#name : #TClyRichTextCommentEditorPaneMorph,
 	#instVars : [

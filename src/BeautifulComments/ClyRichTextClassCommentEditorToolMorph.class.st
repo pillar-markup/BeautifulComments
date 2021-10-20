@@ -1,7 +1,6 @@
 "
-I am a replacement tool for *class* comments. 
+I am a replacement tool for **class** comments. 
 
-I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` and `ClyRichTextClassCommentEditorToolMorph` are basically identical
 "
 Class {
 	#name : #ClyRichTextClassCommentEditorToolMorph,
