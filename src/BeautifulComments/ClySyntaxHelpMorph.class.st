@@ -1,7 +1,9 @@
 "
-```
-ClySyntaxHelpMorph new openInWorld 
-```
+I implement the `Syntax help` button in the lower right of this pane: 
+
+![image](https://user-images.githubusercontent.com/17723745/138031552-9f8c5653-1b9c-4553-8aa4-0fe0ff75faf8.png).
+
+
 "
 Class {
 	#name : #ClySyntaxHelpMorph,
@@ -17,7 +19,7 @@ ClySyntaxHelpMorph >> action [
 
 	| window text | 
 	window := SystemWindow labelled: 'Microdown Syntax Summary'.
-	window extent: 800@600.
+	window extent: 400@300.
 	text := self buildText.
 	text setText: self syntax.
 	window addMorph: text frame: (0 @ 0 corner: 1 @ 1).
@@ -58,44 +60,18 @@ ClySyntaxHelpMorph >> label [
 ClySyntaxHelpMorph >> rawMicrodownSyntax [
 
 	^ '
-#Microdown is quite cool
+# Microdown is quite cool
 
-Here is some code 
+It allow us to write formatted text using a github inspired markdown.
 
-```language=Pharo&caption=Beautiful&anchor=Fig1
-   1000 factorial / 999 factorial
-```
+Take a look at the [project home page](https://github.com/pillar-markup/Microdown) to see how to use it. 
 
-Here is a figure and a link: [http://pharo.org](http://pharo.org).
-
-![Pharologo](https://files.pharo.org/media/logo/logo.png?size=80&anchor=figLogo.)
-
-
-
-Here is a list:
-- item 1
-  1. sub item 1 
-  3. sub item 2
-- item 2
-
-
-**Bold**, _italic_, `monospace`
-
-In Pharo, Microdown supports hyperlinks to: 
-- classes e.g., `Point`, 
-- methodes e.g., `Point class`, `Point>>#setX:setY:`, and 
-- packages e.g., `#''Microdown-Tests''` (for packages).
-
-You can edit this file clicking on `ClySyntaxHelpMorph>>#rawMicrodownSyntax`.
 '
 ]
 
 { #category : #building }
 ClySyntaxHelpMorph >> syntax [ 
-
-	"^ 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'The following is rendered below.' asText, String cr, String cr, self syntaxRaw, String cr, ([MicroDownParser asText: self syntaxRaw ] on: MicParsingError, MessageNotUnderstood  do: [ '' ])"
+	"Return a text to be rendered by a morph, and produced by the MicRichTextComposer"
 	
-	"^ 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'The following is rendered below.' asText, String cr asText, String cr asText, self rawMicrodownSyntax, String cr asText, (MicroDownParser asText: self rawMicrodownSyntax )"
-	
-	^ (([MicroDownParser asText: self rawMicrodownSyntax ] on: MicParsingError, MessageNotUnderstood  do: [ '''' ]) , 'The Pharo in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr, 'Here is the corresponding text in Microdown.', String cr, String cr, self rawMicrodownSyntax, String cr) asText
+	^ (MicRichTextComposer render: self rawMicrodownSyntax )
 ]
