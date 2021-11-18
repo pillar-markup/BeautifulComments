@@ -28,22 +28,22 @@ BeautifulComments class >> captureErrors: aBoolean [
 
 { #category : #settings }
 BeautifulComments class >> preferencesSettingsOn: aBuilder [
-	<to_be_done_systemsettings>
+	<systemsettings>
 	(aBuilder group: #comments)
 		label: 'Comment rendering';  
 		parent: #appearance;
 		description: 'All settings concerned with the control of nice comment rendering';
 		with: [. 
-			(aBuilder setting: #notRendering)
-				label: 'To disable richtext rendering';
-				default: false;
-				target: self;
-				description: 'Comments are by default rendered via Pillar in Richtext. When this setting is on, they are rendered as plain text (showing their Microdown definitions).'. 
-			(aBuilder setting: #captureErrors)
-				label: 'To disable rendering error capture';
+			(aBuilder setting: #rendering)
+				label: 'Enable richtext comments';
 				default: true;
 				target: self;
-				description: 'By default if there is an error during the rendering of the comments, various errors are trapped. If you want to get such errors to debug the system, you should turn off this settings.'. 
+				description: 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'. 
+			(aBuilder setting: #captureErrors)
+				label: 'Enable rendering error capture';
+				default: true;
+				target: self;
+				description: 'By default microdown errors in comment text will not cause debugger to open. Turn this of to get debugger to open on errors'. 
 			
 			]
 ]
@@ -75,4 +75,9 @@ BeautifulComments class >> renderComment: aString of: aClassOrPackage [
 { #category : #settings }
 BeautifulComments class >> rendering [
 	^ Rendering ifNil: [ true ]
+]
+
+{ #category : #rendering }
+BeautifulComments class >> rendering: aBoolean [
+	Rendering := aBoolean
 ]
