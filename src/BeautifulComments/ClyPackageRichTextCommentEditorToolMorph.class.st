@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-UI'
+	#category : #'BeautifulComments-Core'
 }
 
 { #category : #activation }
@@ -30,7 +30,7 @@ ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
 	asText turns it into a Text, and asString into a string, which is what we expect. 
 	If we have a real source code, asText asString is dummy and does not fail."
 
-	^ MicRichTextComposer renderComment: comment asText asString of: self editingPackage 
+	^ self renderComment: comment asText asString of: self editingPackage 
 ]
 
 { #category : #initialization }

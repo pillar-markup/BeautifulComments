@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'button'
 	],
-	#category : #'BeautifulComments-Morph'
+	#category : #'BeautifulComments-Core'
 }
 
 { #category : #building }
