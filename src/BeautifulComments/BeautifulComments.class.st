@@ -55,8 +55,8 @@ BeautifulComments class >> render: aString [
 	self rendering 	
 		ifFalse: [ ^ aString ].
 	self captureErrors 
-		ifFalse: [ ^ MicRichTextComposer microdownAsRichText: aString ].
-	^ [ MicRichTextComposer microdownAsRichText: aString ] 
+		ifFalse: [ ^ Microdown asRichText: aString ].
+	^ [ Microdown asRichText: aString ] 
 			on: Error
 			do: [ aString  ]
 ]
