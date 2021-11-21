@@ -6,7 +6,7 @@ Trait {
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-UI'
+	#category : #'BeautifulComments-Core'
 }
 
 { #category : #'trait rendering' }
@@ -15,6 +15,11 @@ TClyRichTextCommentEditorPaneMorph >> buildTextMorph [
 	self setBackgroundColor: self renderColor.
 	self bindKeyCombination: $r command toAction: [ self toggleMode ].
 	self disable 
+]
+
+{ #category : #'class initialization' }
+TClyRichTextCommentEditorPaneMorph >> captureErrors [ 
+	^ BeautifulComments captureErrors 
 ]
 
 { #category : #'trait rendering' }
@@ -47,7 +52,7 @@ TClyRichTextCommentEditorPaneMorph >> initializePaneTrait [
 
 { #category : #'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> isRendering [
-	^ isRendering
+	^ BeautifulComments rendering
 ]
 
 { #category : #'trait rendering' }
@@ -57,6 +62,13 @@ TClyRichTextCommentEditorPaneMorph >> renderColor [
 	^ bgColor lightness < 0.5
 		ifTrue: [ bgColor + (Color r: 0.0 g: 0.04 b:0.08 )]
 		ifFalse: [ bgColor darker ]
+]
+
+{ #category : #rendering }
+TClyRichTextCommentEditorPaneMorph >> renderComment: aString of: aClassOrPackage [ 
+	"The actual implementation is moved to BeautifulComments - basically to allow Testing"
+	
+	^ BeautifulComments renderComment: aString of: aClassOrPackage
 ]
 
 { #category : #'trait rendering' }

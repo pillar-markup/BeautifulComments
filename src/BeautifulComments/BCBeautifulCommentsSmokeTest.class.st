@@ -8,7 +8,7 @@ Class {
 BCBeautifulCommentsSmokeTest >> testRenderDoesNotRaiseError [
 
 	self 
-		shouldnt: [ MicRichTextComposer 
+		shouldnt: [ BeautifulComments  
 							renderComment: ClyRichTextClassCommentEditorToolMorph comment 
 							of: ClyRichTextClassCommentEditorToolMorph ]
 		raise: Error
