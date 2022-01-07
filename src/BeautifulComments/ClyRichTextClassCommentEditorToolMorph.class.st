@@ -1,5 +1,5 @@
 "
-I am a replacement tool for *class* comments. 
+I am a replacement tool for **class** comments. 
 
 I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` and `ClyRichTextClassCommentEditorToolMorph` are basically identical
 "
@@ -29,7 +29,9 @@ ClyRichTextClassCommentEditorToolMorph >> asRenderedText [
 
 	self flag: #fixme. "this is strange to have a super here."
 	
-	^ MicRichTextComposer renderComment: super editingText asText asString of: self editingClass
+	^ MicRichTextComposer new 
+			renderComment: super editingText asText asString of: self editingClass
+		 
 ]
 
 { #category : #rendering }

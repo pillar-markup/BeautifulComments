@@ -94,5 +94,5 @@ You can edit this file clicking on `ClySyntaxHelpMorph>>#rawMicrodownSyntax`.
 ClySyntaxHelpMorph >> syntax [ 
 	"Return a text to be rendered by a morph, and produced by the MicRichTextComposer"
 	
-	^ (MicRichTextComposer render: self rawMicrodownSyntax , String cr, String cr, 'Microdown''s in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr) , ('Here is the corresponding text in Microdown.', String cr, String cr, self rawMicrodownSyntax, String cr) asText
+	^ (MicRichTextComposer asRichText: self rawMicrodownSyntax , String cr, String cr, 'Microdown''s in image version offers: header, paragraph, codeblock, lists, hyperlinks and many format (bold, monospace, italic, links, .... A larger version is available for books.', String cr) , ('Here is the corresponding text in Microdown.', String cr, String cr, self rawMicrodownSyntax, String cr) asText
 ]
