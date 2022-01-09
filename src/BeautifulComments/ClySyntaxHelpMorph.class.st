@@ -68,7 +68,7 @@ Here is some code
 
 Here is a figure and a link: [http://pharo.org](http://pharo.org).
 
-![Pharologo](https://files.pharo.org/media/logo/logo.png?size=80&anchor=figLogo.)
+![Pharologo](https://files.pharo.org/media/logo/logo.png size=80&anchor=figLogo.)
 
 
 
