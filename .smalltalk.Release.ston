@@ -1,0 +1,19 @@
+SmalltalkCISpec {
+  #preLoading : '.github/scripts/preLoading.st',
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Microdown',
+      #onConflict : #useIncoming,
+      #onUpgrade : #useIncoming,
+      #ignoreImage : true,
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ],
+  #preTesting : [ '.github/scripts/preTesting.st' ],
+  #testing : {
+  	#packages : [
+  		'System-Settings-Tests.*',
+  		'ReleaseTests.*' ] 
+  }  
+}
