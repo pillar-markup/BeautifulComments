@@ -17,6 +17,24 @@ Class {
 }
 
 { #category : #settings }
+BeautifulComments class >> beautifulCommentsSettingsOn: aBuilder [
+	"These settings are added to the settings defined in Microdown>>preferencesSettingsOn:"
+	<systemsettings>
+	(aBuilder setting: #rendering)
+		parent: #microdownAndcomments;
+		label: 'Enable richtext comments';
+		default: true;
+		target: self;
+		description: self renderingDocForSetting.
+	(aBuilder setting: #captureErrors)
+		parent: #microdownAndcomments;
+		label: 'Enable rendering error capture';
+		default: true;
+		target: self;
+		description: self captureErrorsDocForSetting
+]
+
+{ #category : #settings }
 BeautifulComments class >> captureErrors [ 
 	^ CaptureErrors ifNil: [ false ]
 ]
@@ -27,25 +45,9 @@ BeautifulComments class >> captureErrors: aBoolean [
 ]
 
 { #category : #settings }
-BeautifulComments class >> preferencesSettingsOn: aBuilder [
-	<systemsettings>
-	(aBuilder group: #comments)
-		label: 'Comment rendering';  
-		parent: #appearance;
-		description: 'All settings concerned with the control of nice comment rendering';
-		with: [. 
-			(aBuilder setting: #rendering)
-				label: 'Enable richtext comments';
-				default: true;
-				target: self;
-				description: 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'. 
-			(aBuilder setting: #captureErrors)
-				label: 'Enable rendering error capture';
-				default: true;
-				target: self;
-				description: 'By default microdown errors in comment text will not cause debugger to open. Turn this of to get debugger to open on errors'. 
-			
-			]
+BeautifulComments class >> captureErrorsDocForSetting [
+
+	^ 'By default microdown errors in comment text will not cause debugger to open. Turn this of to get debugger to open on errors'
 ]
 
 { #category : #rendering }
@@ -80,4 +82,10 @@ BeautifulComments class >> rendering [
 { #category : #rendering }
 BeautifulComments class >> rendering: aBoolean [
 	Rendering := aBoolean
+]
+
+{ #category : #settings }
+BeautifulComments class >> renderingDocForSetting [
+
+	^ 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'
 ]
