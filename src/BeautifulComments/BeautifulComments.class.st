@@ -44,6 +44,12 @@ BeautifulComments class >> captureErrors: aBoolean [
 	CaptureErrors := aBoolean
 ]
 
+{ #category : #settings }
+BeautifulComments class >> captureErrorsDocForSetting [
+
+	^ 'By default microdown errors in comment text will not cause debugger to open. Turn this of to get debugger to open on errors'
+]
+
 { #category : #rendering }
 BeautifulComments class >> render: aString [ 
 	"Render a string, in case of error, just return it."
@@ -76,4 +82,10 @@ BeautifulComments class >> rendering [
 { #category : #rendering }
 BeautifulComments class >> rendering: aBoolean [
 	Rendering := aBoolean
+]
+
+{ #category : #settings }
+BeautifulComments class >> renderingDocForSetting [
+
+	^ 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'
 ]
