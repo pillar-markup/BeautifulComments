@@ -1,7 +1,9 @@
 "
-```
-ClySyntaxHelpMorph new openInWorld 
-```
+I implement the `Syntax help` button in the lower right of this pane: 
+
+![image](https://user-images.githubusercontent.com/17723745/138031552-9f8c5653-1b9c-4553-8aa4-0fe0ff75faf8.png).
+
+
 "
 Class {
 	#name : #ClySyntaxHelpMorph,
@@ -9,7 +11,7 @@ Class {
 	#instVars : [
 		'button'
 	],
-	#category : #'BeautifulComments-Morph'
+	#category : #'BeautifulComments-Core'
 }
 
 { #category : #building }
@@ -17,7 +19,7 @@ ClySyntaxHelpMorph >> action [
 
 	| window text | 
 	window := SystemWindow labelled: 'Microdown Syntax Summary'.
-	window extent: 800@600.
+	window extent: 400@300.
 	text := self buildText.
 	text setText: self syntax.
 	window addMorph: text frame: (0 @ 0 corner: 1 @ 1).
