@@ -14,7 +14,15 @@ Class {
 BCBeautifulCommentsSettingsTest >> setUp [
 	super setUp.
 	
-	subject := BeautifulComments 
+	subject := BeautifulComments.
+	BCFailingOnPurposeForTestBlock failOnPurpose: true
+]
+
+{ #category : #running }
+BCBeautifulCommentsSettingsTest >> tearDown [
+	
+	BCFailingOnPurposeForTestBlock failOnPurpose: false.
+	super tearDown
 ]
 
 { #category : #tests }
