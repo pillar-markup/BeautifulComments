@@ -13,6 +13,17 @@ Class {
 }
 
 { #category : #accessing }
+BCFailingOnPurposeForTestBlock class >> failOnPurpose [
+	FailOnPurpose ifNil: [ FailOnPurpose := false ].
+	^ FailOnPurpose 
+]
+
+{ #category : #accessing }
+BCFailingOnPurposeForTestBlock class >> failOnPurpose: aBoolean [
+	FailOnPurpose := aBoolean
+]
+
+{ #category : #accessing }
 BCFailingOnPurposeForTestBlock class >> tag [
 	^ #failingOnPurpose
 ]
