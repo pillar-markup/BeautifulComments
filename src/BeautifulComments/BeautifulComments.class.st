@@ -69,7 +69,7 @@ BeautifulComments class >> renderComment: aString of: aClassOrPackage [
 	Else aString."
 	
 	| builder |
-	builder := MicroDownParser builder.
+	builder := Microdown builder.
 	aClassOrPackage buildMicroDownUsing: builder withComment: aString.
 	^ self render: builder contents
 ]
