@@ -7,16 +7,16 @@ Class {
 { #category : #baselines }
 BaselineOfBeautifulComments >> baseline: spec [
 	<baseline>
+	
 	spec for: #'common' do: [
 		spec
 			baseline: 'Microdown'
 			with: [
 				spec
-					loads: #('RichText');
-					repository: 'github://pillar-markup/Microdown:dev/src' ].
+					repository: 'github://pillar-markup/Microdown/src';
+					loads: #('RichText') ].
 		spec 
 			package: #'BeautifulComments'  with: [
-				spec requires:  #( #'Microdown') ]
-		]
+				spec requires:  #( 'Microdown') ] ]
 
 ]
