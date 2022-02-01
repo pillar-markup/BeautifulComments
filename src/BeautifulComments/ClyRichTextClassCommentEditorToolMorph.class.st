@@ -1,6 +1,7 @@
 "
 I am a replacement tool for **class** comments. 
 
+I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` and `ClyRichTextClassCommentEditorToolMorph` are basically identical
 "
 Class {
 	#name : #ClyRichTextClassCommentEditorToolMorph,
@@ -10,7 +11,7 @@ Class {
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : #'BeautifulComments-UI'
 }
 
 { #category : #activation }
@@ -65,9 +66,9 @@ ClyRichTextClassCommentEditorToolMorph >> fillStatusBar [
 
 { #category : #initialization }
 ClyRichTextClassCommentEditorToolMorph >> initialize [
-	super initialize.
-	self initializePaneTrait.
 
+	super initialize.
+	self initializePaneTrait
 ]
 
 { #category : #initialization }
