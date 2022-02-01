@@ -1,16 +1,17 @@
 "
-I am a replacement for the """"package comments"""" tool.
+I am a replacement for the _package comments_ tool.
 
 
-I need to be refactored somehow as ==ClyPackageRichTextCommentEditorToolMorph== and ==ClyRichTextClassCommentEditorToolMorph== are basically identical
 "
 Class {
 	#name : #ClyPackageRichTextCommentEditorToolMorph,
 	#superclass : #ClyPackageCommentEditorToolMorph,
+	#traits : 'TClyRichTextCommentEditorPaneMorph',
+	#classTraits : 'TClyRichTextCommentEditorPaneMorph classTrait',
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-UI'
+	#category : #'BeautifulComments-Core'
 }
 
 { #category : #activation }
@@ -32,36 +33,17 @@ ClyPackageRichTextCommentEditorToolMorph >> asRenderedText [
 ]
 
 { #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> buildTextMorph [
-	super buildTextMorph.
-	self setBackgroundColor: self renderColor.
-	self bindKeyCombination: $r command toAction: [ self toggleMode ].
-	self disable.
-]
+ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
+	"Assumes we are in view source mode. commment might be an instance of RGComment. 
+	asText turns it into a Text, and asString into a string, which is what we expect. 
+	If we have a real source code, asText asString is dummy and does not fail."
 
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> changesAccepted [
-	| res |
-	res := super changesAccepted.
-	self switchToRenderMode.
-	^res
+	^ self renderComment: comment asText asString of: self editingPackage 
 ]
 
 { #category : #initialization }
 ClyPackageRichTextCommentEditorToolMorph >> disable [
 	textMorph enabled: false
-]
-
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> editColor [
-	^ self theme backgroundColor 
-]
-
-{ #category : #initialization }
-ClyPackageRichTextCommentEditorToolMorph >> editingText [
-	^ isRendering 
-		ifTrue: [ self asRenderedText ]
-		ifFalse: [ super editingText ]
 ]
 
 { #category : #initialization }
@@ -81,23 +63,7 @@ ClyPackageRichTextCommentEditorToolMorph >> fillStatusBar [
 { #category : #initialization }
 ClyPackageRichTextCommentEditorToolMorph >> initialize [
 	super initialize.
-	isRendering := true.
-
-]
-
-{ #category : #testing }
-ClyPackageRichTextCommentEditorToolMorph >> isRendering [
-	^ isRendering
-]
-
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> renderColor [
-
-	| bgColor |
-	bgColor := self theme backgroundColor.
-	^ bgColor lightness < 0.5
-		ifTrue: [ bgColor + (Color r: 0.0 g: 0.04 b:0.08 )]
-		ifFalse: [ bgColor darker ]
+	self initializePaneTrait.
 
 ]
 
@@ -106,29 +72,4 @@ ClyPackageRichTextCommentEditorToolMorph >> setBackgroundColor: aColor [
 
 	textMorph color: aColor
 	
-]
-
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> switchToEditMode [
-	isRendering := false.
-	self enable.
-	self setBackgroundColor: self editColor.
-	self triggerUpdate
-]
-
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> switchToRenderMode [
-	self hasUnacceptedEdits
-		ifTrue: [ ^ self ].
-	isRendering := true.
-	self setBackgroundColor: self renderColor.
-	self disable.
-	self triggerUpdate
-]
-
-{ #category : #rendering }
-ClyPackageRichTextCommentEditorToolMorph >> toggleMode [
-	isRendering
-		ifTrue: [ self switchToEditMode ]
-		ifFalse: [ self switchToRenderMode ]
 ]
