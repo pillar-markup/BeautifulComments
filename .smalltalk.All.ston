@@ -2,7 +2,7 @@ SmalltalkCISpec {
   #preLoading : '.github/scripts/preLoading.st',
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'BeutifulComments',
+      #baseline : 'BeautifulComments',
       #directory : 'src',
       #onConflict : #useIncoming,
       #onUpgrade : #useIncoming,
