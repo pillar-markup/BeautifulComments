@@ -36,7 +36,7 @@ BeautifulComments class >> beautifulCommentsSettingsOn: aBuilder [
 
 { #category : #settings }
 BeautifulComments class >> captureErrors [ 
-	^ CaptureErrors ifNil: [ false ]
+	^ CaptureErrors ifNil: [ CaptureErrors := false ]
 ]
 
 { #category : #settings }
