@@ -53,12 +53,13 @@ BeautifulComments class >> captureErrorsDocForSetting [
 { #category : #rendering }
 BeautifulComments class >> render: aString [ 
 	"Render a string, in case of error, just return it."
-	
+	|composer|
+	composer := self richTextComposer.
 	self rendering 	
 		ifFalse: [ ^ aString ].
 	self captureErrors 
-		ifFalse: [ ^ Microdown asRichText: aString ].
-	^ [ Microdown asRichText: aString ] 
+		ifFalse: [ ^ composer asRichText: aString ].
+	^ [ composer asRichText: aString ] 
 			on: Error
 			do: [ aString  ]
 ]
@@ -88,4 +89,11 @@ BeautifulComments class >> rendering: aBoolean [
 BeautifulComments class >> renderingDocForSetting [
 
 	^ 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'
+]
+
+{ #category : #rendering }
+BeautifulComments class >> richTextComposer [
+	^ MicRichTextComposer new
+		textStyler: BeautifulCommentsTextStyler new;
+		yourself.
 ]
