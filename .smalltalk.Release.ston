@@ -2,7 +2,7 @@ SmalltalkCISpec {
   #preLoading : '.github/scripts/preLoading.st',
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'Microdown',
+      #baseline : 'BeautifulComments',
       #onConflict : #useIncoming,
       #onUpgrade : #useIncoming,
       #ignoreImage : true,
@@ -10,7 +10,7 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ],
-  #preTesting : [ '.github/scripts/preTesting.st' ],
+  #preTesting : '.github/scripts/preTesting.st',
   #testing : {
   	#packages : [
   		'System-Settings-Tests.*',
