@@ -52,7 +52,8 @@ TClyRichTextCommentEditorPaneMorph >> initializePaneTrait [
 
 { #category : #'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> isRendering [
-	^ BeautifulComments rendering
+
+	^ isRendering
 ]
 
 { #category : #'trait rendering' }
