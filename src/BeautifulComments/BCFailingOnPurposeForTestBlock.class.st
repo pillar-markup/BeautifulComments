@@ -1,7 +1,7 @@
 "
 I am a comment which cannot be rendered correctly - I use a dedicated error to fail. 
 Toggle Edit/View comment to see how this is done.
-?{failingOnPurpose}?
+{!failingOnPurpose!}
 "
 Class {
 	#name : #BCFailingOnPurposeForTestBlock,
