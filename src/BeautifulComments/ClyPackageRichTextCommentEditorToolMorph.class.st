@@ -41,6 +41,17 @@ ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
 	^ self renderComment: comment asText asString of: self editingPackage 
 ]
 
+{ #category : #accessing }
+ClyPackageRichTextCommentEditorToolMorph >> basicEditingText [
+
+	^ editingPackage packageManifestOrNil 
+		ifNil: [ self packageCommentBlank ]
+		ifNotNil: [ :manifest | 
+			manifest hasComment 
+				ifTrue: [ manifest comment ] 
+				ifFalse: [ self packageCommentBlank ] ]
+]
+
 { #category : #initialization }
 ClyPackageRichTextCommentEditorToolMorph >> disable [
 	textMorph enabled: false
