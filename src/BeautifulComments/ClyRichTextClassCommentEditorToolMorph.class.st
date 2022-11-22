@@ -5,7 +5,7 @@ I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` an
 "
 Class {
 	#name : #ClyRichTextClassCommentEditorToolMorph,
-	#superclass : #ClyClassCommentEditorToolMorph,
+	#superclass : #ClyClassEditorToolMorph,
 	#traits : 'TClyRichTextCommentEditorPaneMorph',
 	#classTraits : 'TClyRichTextCommentEditorPaneMorph classTrait',
 	#instVars : [
@@ -15,13 +15,21 @@ Class {
 }
 
 { #category : #activation }
-ClyRichTextClassCommentEditorToolMorph class >> classCommentTabActivation [ 
-	"Do nothing - part of a hack for overriding the class comment tool in Calypso"
+ClyRichTextClassCommentEditorToolMorph class >> classCommentTabActivation [
+	<classAnnotation>
+	
+	^ClyTabActivationStrategyAnnotation for: ClyClassComment asCalypsoItemContext
 ]
 
-{ #category : #activation }
-ClyRichTextClassCommentEditorToolMorph class >> classTabActivation [  
-	"Do nothing - part of a hack for overriding the class comment tool in Calypso"
+{ #category : #operations }
+ClyRichTextClassCommentEditorToolMorph >> applyChanges [
+
+	self pendingText asString = self editingText asString 
+		ifFalse: [ editingClass 
+						comment: self pendingText 
+						stamp: Author changeStamp].
+
+	^true
 ]
 
 { #category : #rendering }
@@ -33,9 +41,32 @@ ClyRichTextClassCommentEditorToolMorph >> asRenderedText: comment [
 	^ self renderComment: comment asText asString of: self editingClass 
 ]
 
+{ #category : #accessing }
+ClyRichTextClassCommentEditorToolMorph >> basicEditingText [
+
+	^ editingClass comment
+]
+
+{ #category : #initialization }
+ClyRichTextClassCommentEditorToolMorph >> defaultIconName [
+	^(context lastSelectedItem isMarkedWith: ClyNoCommentTag)
+		ifTrue: [ #uncommentedClass ]
+		ifFalse: [ #comments]
+]
+
+{ #category : #initialization }
+ClyRichTextClassCommentEditorToolMorph >> defaultTitle [
+	^'Comment'
+]
+
 { #category : #rendering }
 ClyRichTextClassCommentEditorToolMorph >> disable [
 	textMorph enabled: false
+]
+
+{ #category : #accessing }
+ClyRichTextClassCommentEditorToolMorph >> editingMode [
+	^ RubSmalltalkCommentMode new
 ]
 
 { #category : #rendering }
@@ -59,9 +90,30 @@ ClyRichTextClassCommentEditorToolMorph >> initialize [
 	self initializePaneTrait
 ]
 
+{ #category : #printing }
+ClyRichTextClassCommentEditorToolMorph >> printContext [
+	^super printContext , ' / ', editingClass name
+]
+
 { #category : #initialization }
 ClyRichTextClassCommentEditorToolMorph >> setBackgroundColor: aColor [
 	
 	textMorph color: aColor
 	
+]
+
+{ #category : #initialization }
+ClyRichTextClassCommentEditorToolMorph >> setUpDefaultIcon [
+	"Here we duplicate logic of #defaultIconName to directly ask class about comment.
+	This method is called during background tab building. 
+	So it does not really affect performance which is critical for remote scenario"
+	
+	| iconName |
+	iconName := editingClass hasComment ifTrue: [ #comments ] ifFalse: [ #uncommentedClass ].
+	containerTab icon: (self iconNamed: iconName)
+]
+
+{ #category : #testing }
+ClyRichTextClassCommentEditorToolMorph >> wantsTextStyling [
+	^false
 ]
