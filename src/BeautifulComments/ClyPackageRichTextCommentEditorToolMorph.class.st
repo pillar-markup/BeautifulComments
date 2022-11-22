@@ -143,6 +143,17 @@ ClyPackageRichTextCommentEditorToolMorph >> isSimilarTo: anotherBrowserTool [
 	^editingPackage = anotherBrowserTool editingPackage
 ]
 
+{ #category : #testing }
+ClyPackageRichTextCommentEditorToolMorph >> isValidInContext: aClyFullBrowserContext [
+	
+	self context class = aClyFullBrowserContext class 
+		ifFalse: [ ^ false ].
+		
+	^ aClyFullBrowserContext isPackageSelected
+		ifTrue: [ self editingPackage = aClyFullBrowserContext lastSelectedPackage ]
+		ifFalse: [ false ]
+]
+
 { #category : #accessing }
 ClyPackageRichTextCommentEditorToolMorph >> packageCommentBlank [
 
