@@ -38,7 +38,7 @@ TClyRichTextCommentEditorPaneMorph >> editColor [
 { #category : #'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> editingText [
 	| text |
-	text := super editingText.
+	text := self basicEditingText.
 	^ isRendering 
 		ifTrue: [ self asRenderedText: text ]
 		ifFalse: [ text ]
@@ -52,7 +52,8 @@ TClyRichTextCommentEditorPaneMorph >> initializePaneTrait [
 
 { #category : #'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> isRendering [
-	^ BeautifulComments rendering
+
+	^ isRendering
 ]
 
 { #category : #'trait rendering' }
