@@ -13,7 +13,7 @@ BaselineOfBeautifulComments >> baseline: spec [
 			baseline: 'Microdown'
 			with: [
 				spec
-					repository: 'github://pillar-markup/Microdown:dev/src';
+					repository: 'github://pillar-markup/Microdown:Pharo12/src';
 					loads: #('RichText') ].
 		spec 
 			package: #'BeautifulComments'  with: [
