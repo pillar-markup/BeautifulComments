@@ -7,16 +7,18 @@ I hold preferences for the BeautifulComments (in class variables and methods on 
 - As per fall of 2021 microdown and microdown support in Pharo is still in active development. Errors can occour! It is possible to set the comment to be robust to errors in the microdown in class comments. This is controlled by the `capture errors`, or through the class side method: 'captureErrors: aBoolean`.
 "
 Class {
-	#name : #BeautifulComments,
-	#superclass : #Object,
+	#name : 'BeautifulComments',
+	#superclass : 'Object',
 	#classVars : [
 		'CaptureErrors',
 		'Rendering'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : 'BeautifulComments-Core',
+	#package : 'BeautifulComments',
+	#tag : 'Core'
 }
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> beautifulCommentsSettingsOn: aBuilder [
 	"These settings are added to the settings defined in Microdown>>preferencesSettingsOn:"
 	<systemsettings>
@@ -34,23 +36,23 @@ BeautifulComments class >> beautifulCommentsSettingsOn: aBuilder [
 		description: self captureErrorsDocForSetting
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> captureErrors [
 	^ CaptureErrors ifNil: [ CaptureErrors := true ]
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> captureErrors: aBoolean [ 
 	CaptureErrors := aBoolean
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> captureErrorsDocForSetting [
 
 	^ 'By default microdown errors in comment text will not cause debugger to open. Turn this of to get debugger to open on errors'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 BeautifulComments class >> render: aString [ 
 	"Render a string, in case of error, just return it."
 	|composer|
@@ -64,7 +66,7 @@ BeautifulComments class >> render: aString [
 			do: [ aString  ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 BeautifulComments class >> renderComment: aString of: aClassOrPackage [ 
 	"Return aString as part of the templated class comment, when rendering is on.
 	Else aString."
@@ -75,23 +77,23 @@ BeautifulComments class >> renderComment: aString of: aClassOrPackage [
 	^ self render: builder contents
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> rendering [
 	^ Rendering ifNil: [ true ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 BeautifulComments class >> rendering: aBoolean [
 	Rendering := aBoolean
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 BeautifulComments class >> renderingDocForSetting [
 
 	^ 'Comments are by default rendered via microdown. When this setting is on, they are rendered as plain string (showing their Microdown definitions).'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 BeautifulComments class >> richTextComposer [
 	^ MicRichTextComposer new
 		textStyler: BeautifulCommentsTextStyler new;

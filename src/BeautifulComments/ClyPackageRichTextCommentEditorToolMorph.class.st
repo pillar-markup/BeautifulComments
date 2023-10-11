@@ -4,18 +4,20 @@ I am a replacement for the _package comments_ tool.
 
 "
 Class {
-	#name : #ClyPackageRichTextCommentEditorToolMorph,
-	#superclass : #ClyTextEditorToolMorph,
+	#name : 'ClyPackageRichTextCommentEditorToolMorph',
+	#superclass : 'ClyTextEditorToolMorph',
 	#traits : 'TClyRichTextCommentEditorPaneMorph',
 	#classTraits : 'TClyRichTextCommentEditorPaneMorph classTrait',
 	#instVars : [
 		'editingPackage',
 		'isRendering'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : 'BeautifulComments-Core',
+	#package : 'BeautifulComments',
+	#tag : 'Core'
 }
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClyPackageRichTextCommentEditorToolMorph class >> browserTabActivation [
 	"This declaration specifies that in any browser when packages are selected, a comment editor will be available in a tab."
 
@@ -23,24 +25,24 @@ ClyPackageRichTextCommentEditorToolMorph class >> browserTabActivation [
 	^ClyTabActivationStrategyAnnotation for: RPackage asCalypsoItemContext
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClyPackageRichTextCommentEditorToolMorph class >> browserTabActivation2 [
 	<classAnnotation>
 	
 	^ClyTabActivationStrategyAnnotation for: ClyClassGroup asCalypsoItemContext
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ClyPackageRichTextCommentEditorToolMorph class >> shouldBeActivatedInContext: aBrowserContext [
 	^aBrowserContext isPackageSelected and: [aBrowserContext isClassSelected not]
 ]
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClyPackageRichTextCommentEditorToolMorph class >> tabOrder [
 	^ -10
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 ClyPackageRichTextCommentEditorToolMorph >> applyChanges [
 
 	self pendingText asString = self editingText ifFalse: [
@@ -49,7 +51,7 @@ ClyPackageRichTextCommentEditorToolMorph >> applyChanges [
 	^true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyPackageRichTextCommentEditorToolMorph >> asRenderedText [
 
 	^ MicRichTextComposer new 
@@ -57,7 +59,7 @@ ClyPackageRichTextCommentEditorToolMorph >> asRenderedText [
 			of: self editingPackage
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
 	"Assumes we are in view source mode. commment might be an instance of RGComment. 
 	asText turns it into a Text, and asString into a string, which is what we expect. 
@@ -66,14 +68,14 @@ ClyPackageRichTextCommentEditorToolMorph >> asRenderedText: comment [
 	^ self renderComment: comment asText asString of: self editingPackage 
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 ClyPackageRichTextCommentEditorToolMorph >> attachToSystem [
 
 	browser system 
 		when: (ClyPackageChange of: editingPackage) send: #triggerUpdate to: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyPackageRichTextCommentEditorToolMorph >> basicEditingText [
 
 	^ editingPackage packageManifestOrNil 
@@ -84,43 +86,43 @@ ClyPackageRichTextCommentEditorToolMorph >> basicEditingText [
 				ifFalse: [ self packageCommentBlank ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> defaultIconName [
 	^#comments
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> defaultTitle [
 	^'Comment'
 ]
 
-{ #category : #controlling }
+{ #category : 'controlling' }
 ClyPackageRichTextCommentEditorToolMorph >> detachFromSystem [
 
 	browser system unsubscribe: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> disable [
 	textMorph enabled: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyPackageRichTextCommentEditorToolMorph >> editingPackage [
 	^ editingPackage
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyPackageRichTextCommentEditorToolMorph >> editingPackage: anObject [
 	editingPackage := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> enable [
 	textMorph enabled: true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyPackageRichTextCommentEditorToolMorph >> fillStatusBar [
 
 	super fillStatusBar.
@@ -129,21 +131,21 @@ ClyPackageRichTextCommentEditorToolMorph >> fillStatusBar [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> initialize [
 	super initialize.
 	self initializePaneTrait.
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ClyPackageRichTextCommentEditorToolMorph >> isSimilarTo: anotherBrowserTool [
 	(super isSimilarTo: anotherBrowserTool) ifFalse: [ ^false ].
 	
 	^editingPackage = anotherBrowserTool editingPackage
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ClyPackageRichTextCommentEditorToolMorph >> isValidInContext: aClyFullBrowserContext [
 	
 	self context class = aClyFullBrowserContext class 
@@ -154,32 +156,32 @@ ClyPackageRichTextCommentEditorToolMorph >> isValidInContext: aClyFullBrowserCon
 		ifFalse: [ false ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyPackageRichTextCommentEditorToolMorph >> packageCommentBlank [
 
 	^'Please comment package here'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ClyPackageRichTextCommentEditorToolMorph >> printContext [
 	^editingPackage name
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyPackageRichTextCommentEditorToolMorph >> setBackgroundColor: aColor [
 
 	textMorph color: aColor
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyPackageRichTextCommentEditorToolMorph >> setUpModelFromContext [
 	super setUpModelFromContext.
 
 	editingPackage := context lastSelectedPackage
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ClyPackageRichTextCommentEditorToolMorph >> wantsTextStyling [
 	^false
 ]

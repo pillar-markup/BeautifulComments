@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfBeautifulComments,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfBeautifulComments
+	#name : 'BaselineOfBeautifulComments',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfBeautifulComments',
+	#package : 'BaselineOfBeautifulComments'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfBeautifulComments >> baseline: spec [
 	<baseline>
 	

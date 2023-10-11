@@ -2,15 +2,17 @@
 This class test that two settings CaptureErrors and Rendering works as intended
 "
 Class {
-	#name : #BCBeautifulCommentsSettingsTest,
-	#superclass : #TestCase,
+	#name : 'BCBeautifulCommentsSettingsTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'subject'
 	],
-	#category : #'BeautifulComments-Tests'
+	#category : 'BeautifulComments-Tests',
+	#package : 'BeautifulComments',
+	#tag : 'Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 BCBeautifulCommentsSettingsTest >> setUp [
 	super setUp.
 	
@@ -18,14 +20,14 @@ BCBeautifulCommentsSettingsTest >> setUp [
 	BCFailingOnPurposeForTestBlock failOnPurpose: true
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 BCBeautifulCommentsSettingsTest >> tearDown [
 	
 	BCFailingOnPurposeForTestBlock failOnPurpose: false.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BCBeautifulCommentsSettingsTest >> testErrorCatch [
 	"Chech that capture errors is working is working when true"
 	| comment capturing|
@@ -37,7 +39,7 @@ BCBeautifulCommentsSettingsTest >> testErrorCatch [
 	subject captureErrors: capturing 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BCBeautifulCommentsSettingsTest >> testNoErrorCatch [
 	"Chech that capture errors is working is working when true"
 	| capturing|
@@ -52,7 +54,7 @@ BCBeautifulCommentsSettingsTest >> testNoErrorCatch [
 	subject captureErrors: capturing 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BCBeautifulCommentsSettingsTest >> testNotRenderingOfMyOwnComment [
 	"Chech that rendering is working when false"
 	| comment rendering|
@@ -69,7 +71,7 @@ This class test that two settings CaptureErrors and Rendering works as intended'
 	subject rendering: rendering 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BCBeautifulCommentsSettingsTest >> testRenderingOfMyOwnComment [
 	"Chech that rendering is working when true"
 	| comment rendering|
@@ -84,7 +86,7 @@ BCBeautifulCommentsSettingsTest >> testRenderingOfMyOwnComment [
 	subject rendering: rendering 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BCBeautifulCommentsSettingsTest >> testThereAreTwoSettings [
 	"I am an approximation, just making sure the two class variables exist"
 	self assert: subject classVarNames equals: #(CaptureErrors Rendering)

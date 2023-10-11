@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfBeautifulComments }
+Package { #name : 'BaselineOfBeautifulComments' }
