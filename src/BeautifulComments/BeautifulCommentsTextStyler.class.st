@@ -5,17 +5,19 @@ I define the parameters of rich text styling for comments. I change two things c
 - I keep newlines in paragraphs
 "
 Class {
-	#name : #BeautifulCommentsTextStyler,
-	#superclass : #MicTextStyler,
-	#category : #'BeautifulComments-UI'
+	#name : 'BeautifulCommentsTextStyler',
+	#superclass : 'MicTextStyler',
+	#category : 'BeautifulComments-UI',
+	#package : 'BeautifulComments',
+	#tag : 'UI'
 }
 
-{ #category : #public }
+{ #category : 'public' }
 BeautifulCommentsTextStyler >> headerFontSizes [
 	^ #(18 16 14 12 11 10)
 ]
 
-{ #category : #'composer styles' }
+{ #category : 'composer styles' }
 BeautifulCommentsTextStyler >> postTextTreatment: aText [
 	"See comment in superclass - keep newlines in paragraphs"
 	^ aText

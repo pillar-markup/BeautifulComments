@@ -4,31 +4,33 @@ Toggle Edit/View comment to see how this is done.
 {!failingOnPurpose!}
 "
 Class {
-	#name : #BCFailingOnPurposeForTestBlock,
-	#superclass : #MicAnnotationBlock,
+	#name : 'BCFailingOnPurposeForTestBlock',
+	#superclass : 'MicAnnotationBlock',
 	#classVars : [
 		'FailOnPurpose'
 	],
-	#category : #'BeautifulComments-Tests'
+	#category : 'BeautifulComments-Tests',
+	#package : 'BeautifulComments',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BCFailingOnPurposeForTestBlock class >> failOnPurpose [
 	FailOnPurpose ifNil: [ FailOnPurpose := false ].
 	^ FailOnPurpose 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BCFailingOnPurposeForTestBlock class >> failOnPurpose: aBoolean [
 	FailOnPurpose := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BCFailingOnPurposeForTestBlock class >> tag [
 	^ #failingOnPurpose
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 BCFailingOnPurposeForTestBlock >> accept: aVisitor [
 	self class failOnPurpose 
 		ifTrue: [ BCFailingOnPurposeForTestError signal ]

@@ -6,15 +6,17 @@ I can be activated by the keyboard shortcut defined in `ClyRichTextClassCommentE
 
 "
 Class {
-	#name : #ClyEditCommentSwitchMorph,
-	#superclass : #ClyStatusBarItemMorph,
+	#name : 'ClyEditCommentSwitchMorph',
+	#superclass : 'ClyStatusBarItemMorph',
 	#instVars : [
 		'checkbox'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : 'BeautifulComments-Core',
+	#package : 'BeautifulComments',
+	#tag : 'Core'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 ClyEditCommentSwitchMorph >> build [
 	
 	checkbox := CheckboxMorph 
@@ -28,18 +30,18 @@ ClyEditCommentSwitchMorph >> build [
 	self addMorph: checkbox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyEditCommentSwitchMorph >> definitionTypeLabel [
 	^ 'Toggle Edit / View comment'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 ClyEditCommentSwitchMorph >> status [
 
 	^ ownerTool isRendering
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 ClyEditCommentSwitchMorph >> toggle [
 	ownerTool toggleMode.
 	ownerTool update

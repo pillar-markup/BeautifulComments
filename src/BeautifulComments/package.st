@@ -1,1 +1,1 @@
-Package { #name : #BeautifulComments }
+Package { #name : 'BeautifulComments' }

@@ -6,15 +6,17 @@ I implement the `Syntax help` button in the lower right of this pane:
 
 "
 Class {
-	#name : #ClySyntaxHelpMorph,
-	#superclass : #ClyStatusBarItemMorph,
+	#name : 'ClySyntaxHelpMorph',
+	#superclass : 'ClyStatusBarItemMorph',
 	#instVars : [
 		'button'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : 'BeautifulComments-Core',
+	#package : 'BeautifulComments',
+	#tag : 'Core'
 }
 
-{ #category : #building }
+{ #category : 'building' }
 ClySyntaxHelpMorph >> action [
 
 	| window text | 
@@ -26,7 +28,7 @@ ClySyntaxHelpMorph >> action [
 	window openInWorld
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 ClySyntaxHelpMorph >> build [
 	
 	button := PluggableButtonMorph
@@ -38,7 +40,7 @@ ClySyntaxHelpMorph >> build [
 	self addMorph: button
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 ClySyntaxHelpMorph >> buildText [ 
  
 	| textModel scrolledText |
@@ -51,12 +53,12 @@ ClySyntaxHelpMorph >> buildText [
 	^ scrolledText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClySyntaxHelpMorph >> label [
 	^ 'Syntax Help'
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 ClySyntaxHelpMorph >> rawMicrodownSyntax [
 
 	^ '
@@ -92,7 +94,7 @@ You can edit this file clicking on `ClySyntaxHelpMorph>>#rawMicrodownSyntax`.
 '
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 ClySyntaxHelpMorph >> syntax [ 
 	"Return a text to be rendered by a morph, and produced by the MicRichTextComposer"
 	

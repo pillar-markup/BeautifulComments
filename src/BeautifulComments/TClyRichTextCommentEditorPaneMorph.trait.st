@@ -2,14 +2,16 @@
 I am a trait that gathers the common aspects of the package and class comment editors.
 "
 Trait {
-	#name : #TClyRichTextCommentEditorPaneMorph,
+	#name : 'TClyRichTextCommentEditorPaneMorph',
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-Core'
+	#category : 'BeautifulComments-Core',
+	#package : 'BeautifulComments',
+	#tag : 'Core'
 }
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> buildTextMorph [
 	super buildTextMorph.
 	self setBackgroundColor: self renderColor.
@@ -17,12 +19,12 @@ TClyRichTextCommentEditorPaneMorph >> buildTextMorph [
 	self disable 
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 TClyRichTextCommentEditorPaneMorph >> captureErrors [ 
 	^ BeautifulComments captureErrors 
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> changesAccepted [
 	| res |
 	res := super changesAccepted.
@@ -30,12 +32,12 @@ TClyRichTextCommentEditorPaneMorph >> changesAccepted [
 	^res
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> editColor [
 	^ self theme backgroundColor 
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> editingText [
 	| text |
 	text := self basicEditingText.
@@ -44,19 +46,19 @@ TClyRichTextCommentEditorPaneMorph >> editingText [
 		ifFalse: [ text ]
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> initializePaneTrait [ 
 	isRendering := true.
 
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> isRendering [
 
 	^ isRendering
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> renderColor [
 	| bgColor |
 	bgColor := self theme backgroundColor.
@@ -65,14 +67,14 @@ TClyRichTextCommentEditorPaneMorph >> renderColor [
 		ifFalse: [ bgColor darker ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 TClyRichTextCommentEditorPaneMorph >> renderComment: aString of: aClassOrPackage [ 
 	"The actual implementation is moved to BeautifulComments - basically to allow Testing"
 	
 	^ BeautifulComments renderComment: aString of: aClassOrPackage
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> switchToEditMode [
 	isRendering := false.
 	self enable.
@@ -80,7 +82,7 @@ TClyRichTextCommentEditorPaneMorph >> switchToEditMode [
 	self triggerUpdate
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> switchToRenderMode [
 	self hasUnacceptedEdits
 		ifTrue: [ ^ self ].
@@ -90,7 +92,7 @@ TClyRichTextCommentEditorPaneMorph >> switchToRenderMode [
 	self triggerUpdate
 ]
 
-{ #category : #'trait rendering' }
+{ #category : 'trait rendering' }
 TClyRichTextCommentEditorPaneMorph >> toggleMode [
 	isRendering
 		ifTrue: [ self switchToEditMode ]

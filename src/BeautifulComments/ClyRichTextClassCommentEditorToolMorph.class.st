@@ -4,24 +4,26 @@ I am a replacement tool for **class** comments.
 I need to be refactored somehow as `ClyPackageRichTextCommentEditorToolMorph` and `ClyRichTextClassCommentEditorToolMorph` are basically identical
 "
 Class {
-	#name : #ClyRichTextClassCommentEditorToolMorph,
-	#superclass : #ClyClassEditorToolMorph,
+	#name : 'ClyRichTextClassCommentEditorToolMorph',
+	#superclass : 'ClyClassEditorToolMorph',
 	#traits : 'TClyRichTextCommentEditorPaneMorph',
 	#classTraits : 'TClyRichTextCommentEditorPaneMorph classTrait',
 	#instVars : [
 		'isRendering'
 	],
-	#category : #'BeautifulComments-UI'
+	#category : 'BeautifulComments-UI',
+	#package : 'BeautifulComments',
+	#tag : 'UI'
 }
 
-{ #category : #activation }
+{ #category : 'activation' }
 ClyRichTextClassCommentEditorToolMorph class >> classCommentTabActivation [
 	<classAnnotation>
 	
 	^ClyTabActivationStrategyAnnotation for: ClyClassComment asCalypsoItemContext
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 ClyRichTextClassCommentEditorToolMorph >> applyChanges [
 
 	self pendingText asString = self editingText asString 
@@ -32,7 +34,7 @@ ClyRichTextClassCommentEditorToolMorph >> applyChanges [
 	^true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyRichTextClassCommentEditorToolMorph >> asRenderedText: comment [
 	"Assumes we are in view source mode. commment might be an instance of RGComment. 
 	asText turns it into a Text, and asString into a string, which is what we expect. 
@@ -41,40 +43,40 @@ ClyRichTextClassCommentEditorToolMorph >> asRenderedText: comment [
 	^ self renderComment: comment asText asString of: self editingClass 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyRichTextClassCommentEditorToolMorph >> basicEditingText [
 
 	^ editingClass comment
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyRichTextClassCommentEditorToolMorph >> defaultIconName [
 	^(context lastSelectedItem isMarkedWith: ClyNoCommentTag)
 		ifTrue: [ #uncommentedClass ]
 		ifFalse: [ #comments]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyRichTextClassCommentEditorToolMorph >> defaultTitle [
 	^'Comment'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyRichTextClassCommentEditorToolMorph >> disable [
 	textMorph enabled: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyRichTextClassCommentEditorToolMorph >> editingMode [
 	^ RubSmalltalkCommentMode new
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyRichTextClassCommentEditorToolMorph >> enable [
 	textMorph enabled: true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ClyRichTextClassCommentEditorToolMorph >> fillStatusBar [
 
 	super fillStatusBar.
@@ -83,26 +85,26 @@ ClyRichTextClassCommentEditorToolMorph >> fillStatusBar [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyRichTextClassCommentEditorToolMorph >> initialize [
 
 	super initialize.
 	self initializePaneTrait
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ClyRichTextClassCommentEditorToolMorph >> printContext [
 	^super printContext , ' / ', editingClass name
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyRichTextClassCommentEditorToolMorph >> setBackgroundColor: aColor [
 	
 	textMorph color: aColor
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ClyRichTextClassCommentEditorToolMorph >> setUpDefaultIcon [
 	"Here we duplicate logic of #defaultIconName to directly ask class about comment.
 	This method is called during background tab building. 
@@ -113,7 +115,7 @@ ClyRichTextClassCommentEditorToolMorph >> setUpDefaultIcon [
 	containerTab icon: (self iconNamed: iconName)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ClyRichTextClassCommentEditorToolMorph >> wantsTextStyling [
 	^false
 ]
